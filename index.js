@@ -33,7 +33,7 @@ function getFinals(data) {
    })
    return allFinals;
 }
-// console.log(getFinals(fifaData));
+console.log(getFinals(fifaData));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -52,7 +52,7 @@ function getYears(fifaDataCB,getFinalscb) {
     return years;
 }
 
-console.log(getYears(fifaData, getFinals));
+// console.log(getYears(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -75,7 +75,7 @@ function getWinners(fifaDatacb, getFinalscb) {
     return winners;
 }
 
-console.log(getWinners(fifaData,getFinals));
+// console.log(getWinners(fifaData,getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -91,6 +91,7 @@ function getWinnersByYear(fifaDatacb, getYearscb, getWinnerscb) {
     const getYearresult = getYearscb(fifaDatacb, getFinals);
     const getWinnerresult = getWinnerscb(fifaDatacb, getFinals);
 
+
     return getYearresult.map(function(item,index){
         return `In ${item}, ${getWinnerresult[index]} won the world cup!`
     })
@@ -99,7 +100,7 @@ function getWinnersByYear(fifaDatacb, getYearscb, getWinnerscb) {
     /* store results in a var, use map with item and index, map over winners use index to refer to the year and use item to refer to the current value in winners */
 }
 
-console.log(getWinnersByYear(fifaData, getYears, getWinners));
+// console.log(getWinnersByYear(fifaData, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
@@ -111,10 +112,24 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/*getfinalscb  */) {
-   /* use reduce, if want to use 2nd decimal look up .toFixed(2); add up all the home team and away team goals and then devide by length of data set, use 2steps */
-}
+// function getAverageGoals(cb) {
+//     const totalGoals =cb.reduce(function (acc, item){
+//         return acc + item['Home Team Goals'] + item['Away Team Goals'];
+//     }, 0);
+//     return (totalGoals / cb.length).toFixed(2);
+// }
 
+// console.log(getAverageGoals(getFinals(fifaData)));
+
+function getAverageGoals(getFinalscb) {
+    const totalgoal = getFinalscb.reduce(function(acc, item){
+       return acc + item['Home Team Goals'] + item['Away Team Goals'];
+}, 0);
+        
+   /* use reduce, if want to use 2nd decimal look up .toFixed(2); add up all the home team and away team goals and then devide by length of data set, use 2steps */
+return (totalgoal / getFinalscb.length).toFixed(2);
+}
+console.log (getAverageGoals(getFinals(fifaData)));
 
 
 
